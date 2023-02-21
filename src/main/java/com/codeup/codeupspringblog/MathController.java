@@ -30,6 +30,6 @@ public class MathController {
     @RequestMapping(path ="/divide/{number6}/by/{number3}", method = RequestMethod.GET)
     @ResponseBody
     public String divideSixByThree(@PathVariable int number6, @PathVariable int number3){
-        return String.format("%d by %d = %d", number6, number3, number6 % number3);
+        return String.format("%d by %d = %d", number6, number3, number6 / number3);
     }
 }
