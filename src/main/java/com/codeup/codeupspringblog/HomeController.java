@@ -12,4 +12,5 @@ public class HomeController {
     public String land(){
         return "This is the landing page!";
     }
+
 }

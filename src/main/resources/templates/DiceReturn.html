@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Dice Return</title>
+</head>
+<body>
+
+<!--Passing the random number chosen by the user.-->
+<h1>User chose number, <span th:text="${number}"></span></h1>
+
+<!--Passing the result of the dice roll to the view.-->
+<h2>The dice roll result was, <span th:text="${randomNum}"></span></h2>
+
+<!--Comparison to see if user guessed the correct number.-->
+<h3 th:if="${number == randomNum}">Correct guess</h3>
+<h3 th:if="${number != randomNum}">Incorrect guess</h3>
+
+</body>
+</html>
