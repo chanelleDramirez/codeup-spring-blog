@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseBody;
+import java.util.ArrayList;
 
 
 @Controller
@@ -15,6 +16,10 @@ public class PostController {
     @GetMapping("/posts")
     @ResponseBody
     public String posts() {
+        ArrayList<String> content = new  ArrayList<String>();
+        content.add("first");
+        content.add("second");
+        content.add("third");
         return "posts/index";
     }
 
