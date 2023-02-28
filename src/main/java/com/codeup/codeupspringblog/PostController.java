@@ -35,4 +35,11 @@ public class PostController {
     public String create() {
         return "posts/create";
     }
+
+
+    private final Post.PostRepository adDao;
+
+    public PostController(Post.PostRepository adDao) {
+        this.adDao = adDao;
+    }
 }
