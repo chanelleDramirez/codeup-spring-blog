@@ -9,7 +9,11 @@
 <h1 th: text="${produce}"></h1>
 
 <form action="/posts/create" method="post">
-<input type="text" name="produce" id="produce">
+    <label for="title">Post Title: </label>
+<input type="text" name="title" id="title">
+    <label for="body">Post Body:</label>
+    <textarea name="body" id="body" cols="30" rows="10"></textarea>
+    <button class="btn footer-bg" type="submit">Submit Post</button>
 </form>
 </body>
 </html>

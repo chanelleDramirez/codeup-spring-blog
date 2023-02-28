@@ -3,27 +3,29 @@ import jakarta.persistence.*;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 @Entity
-@Table(name="Post")
+@Table(name="post") //Allows us to create a table
 public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column (nullable = false, length = 100)
+    @Column (nullable = false, length = 100) // Allows us to create a column
     private String title;
 
-    @Column (nullable = false)
-    private String description;
+    @Column (nullable = false) // Allows us to create a column
+    private String body;
+
+    public Post(String title, String body) {  // title and body on PostController required a constructor.
+    }
 
     public String getTitle() {
         return title;
-    }
+    }  // Lines 18 to 31 are getters and setters for title and body.
 
     public void setTitle(String title) {
         this.title = title;
     }
 
-    private String body;
 
     public String getBody() {
         return body;
@@ -34,9 +36,9 @@ public class Post {
     }
 
 
-    public interface PostRepository extends JpaRepository<Post, Long> {
 
-    }
+
+
 
 
 
