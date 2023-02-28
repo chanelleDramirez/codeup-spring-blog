@@ -1,16 +1,14 @@
-package com.codeup.codeupspringblog;
+package com.codeup.codeupspringblog.controllers;
 
 
-import Repository.PostRepository;
-import models.Post;
+import com.codeup.codeupspringblog.Repository.PostRepository;
+import com.codeup.codeupspringblog.models.Post;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.text.AttributedString;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
 
 
 @Controller
@@ -18,7 +16,7 @@ public class PostController {  // lines 14,16,18,and 19 is how you use dependenc
 
     private final PostRepository postDao;
 
-    public PostController(PostRepository postDao){
+    public PostController(PostRepository postDao) {
         this.postDao = postDao;
     }
 

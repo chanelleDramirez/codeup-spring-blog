@@ -1,4 +1,4 @@
-package models;
+package com.codeup.codeupspringblog.models;
 import jakarta.persistence.*;
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -14,6 +14,10 @@ public class Post {
 
     @Column (nullable = false) // Allows us to create a column
     private String body;
+
+    public Post(){
+
+    }
 
     public Post(String title, String body) {  // title and body on PostController required a constructor.
     }
