@@ -1,13 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Create</title>
 </head>
 <body>
 
+<h1 th: text="${produce}"></h1>
+
 <form action="/posts/create" method="post">
-<input>
+<input type="text" name="produce" id="produce">
 </form>
 </body>
 </html>

@@ -1,4 +1,4 @@
-package com.codeup.codeupspringblog;
+package models;
 import jakarta.persistence.*;
 import org.springframework.data.jpa.repository.JpaRepository;
 
