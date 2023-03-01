@@ -2,6 +2,7 @@ package com.codeup.codeupspringblog.controllers;
 
 
 import com.codeup.codeupspringblog.Repository.PostRepository;
+import com.codeup.codeupspringblog.Repository.UserRepository;
 import com.codeup.codeupspringblog.models.Post;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,13 +13,22 @@ import java.util.Collections;
 
 
 @Controller
-public class PostController {  // lines 14,16,18,and 19 is how you use dependency injection.
+public class PostController {  // lines 16 to  29 is how you use dependency injection.
 
     private final PostRepository postDao;
 
-    public PostController(PostRepository postDao) {
+    public PostController(PostRepository postDao, UserRepository userDao) {
         this.postDao = postDao;
+        this.userDao = userDao;
     }
+
+
+    private final UserRepository userDao;
+    public PostController(UserRepository userDao){
+        this.userDao = userDao;
+        postDao = null;
+    }
+
 
     @GetMapping("/posts")
     public String postsContent(Model model) {
@@ -48,6 +58,9 @@ public String createProduce(@RequestParam(name = "title") String title, @Request
 
     return "redirect:/posts";
 }
+
+
+
 }
 
 
