@@ -39,7 +39,9 @@ public class Post {
         this.body = body;
     }
 
-
+@ManyToOne  // Implementing the use of Relationships here.
+    @JoinColumn(name = "user_id")
+    private User user;
 
 
 

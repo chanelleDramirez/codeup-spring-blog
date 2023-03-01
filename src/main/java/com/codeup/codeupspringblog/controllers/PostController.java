@@ -4,6 +4,7 @@ package com.codeup.codeupspringblog.controllers;
 import com.codeup.codeupspringblog.Repository.PostRepository;
 import com.codeup.codeupspringblog.Repository.UserRepository;
 import com.codeup.codeupspringblog.models.Post;
+import com.codeup.codeupspringblog.models.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -28,6 +29,8 @@ public class PostController {  // lines 16 to  29 is how you use dependency inje
         this.userDao = userDao;
         postDao = null;
     }
+
+   // private final EmailService emailDao;
 
 
     @GetMapping("/posts")

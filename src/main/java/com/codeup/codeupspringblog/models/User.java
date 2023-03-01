@@ -3,6 +3,8 @@ package com.codeup.codeupspringblog.models;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name="users")
 public class User {
@@ -65,10 +67,16 @@ public class User {
         this.password = password;
     }
 
-    @ManyToOne  // Implementing the use of Relationships here.
-    @JoinColumn(name ="user_id")
-    private User user;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")  // Implementing the use of Relationships here.
+    private List<Post> posts;
 
+
+    User user = userDao.getById(); // setting the user before the post is created
+    Post post = new Post();
+    post.setTitle("");
+    post.setDescription("");
+    post.setOwner(user);
+    postDao.save(post);
 
 
 
