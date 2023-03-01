@@ -9,24 +9,11 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id; // Lines 11 to 20 are added because intellij said the persistent entity user should have a primary key.
-
-
-    @Column
-    private String name;
-
-
-    @ManyToOne  // Implementing the use of Relationships here.
-    @JoinColumn(name ="user_id")
-    private User user;
-
-    public User(){
-
-    }
+    private Long id;  // id field
 
     public User(long id, String name){
-    this.id = id;
-    this.name = name;
+        this.id = id;
+        this.username = username;
     }
 
     public void setId(Long id) {
@@ -36,12 +23,55 @@ public class User {
     public Long getId() {
         return id;
     }
+    @Column
+    private String username; // username field
+
+    public User() {
+
+    }
 
     public String getName(){
-        return name;
+        return username;
     }
 
     public void setName(){
-         this.name = name;
+        this.username = username;
     }
+
+    @Column
+    private String email; //email field
+    @Column
+    private String password; // password field
+
+    public User(String email, String password){
+
+        this.email = email;
+        this.password = password;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPassword(){
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    @ManyToOne  // Implementing the use of Relationships here.
+    @JoinColumn(name ="user_id")
+    private User user;
+
+
+
+
+
+
 }
