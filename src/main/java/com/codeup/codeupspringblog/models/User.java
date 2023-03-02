@@ -39,12 +39,29 @@ public class User {
         password = copy.password;
     }
 
+    public User(Long id, String username, String email, String password, List<Post> posts) {
+        this.id = id;
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.posts = posts;
+    }
 
-    public String getName(){
+    public User(String username, String email, String password, List<Post> posts) {
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.posts = posts;
+    }
+
+
+
+
+    public String getUsername(){
         return username;
     }
 
-    public void setName(){
+    public void setUsername(){
         this.username = username;
     }
 

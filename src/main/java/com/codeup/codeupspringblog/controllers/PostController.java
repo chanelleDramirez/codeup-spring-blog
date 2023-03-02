@@ -3,6 +3,7 @@ package com.codeup.codeupspringblog.controllers;
 
 import com.codeup.codeupspringblog.Repository.PostRepository;
 import com.codeup.codeupspringblog.Repository.UserRepository;
+import com.codeup.codeupspringblog.Services.EmailService;
 import com.codeup.codeupspringblog.models.Post;
 import com.codeup.codeupspringblog.models.User;
 import org.springframework.stereotype.Controller;
@@ -16,19 +17,20 @@ import java.util.Collections;
 @Controller
 public class PostController {  // lines 16 to  29 is how you use dependency injection.
 
-    private final PostRepository postDao;
-
-    public PostController(PostRepository postDao, UserRepository userDao) {
-        this.postDao = postDao;
-        this.userDao = userDao;
-    }
-
 
     private final UserRepository userDao;
-    public PostController(UserRepository userDao){
+    private final PostRepository postDao;
+private final EmailService emailService;
+
+
+    public PostController(PostRepository postDao, UserRepository userDao, EmailService emailService) {
+        this.postDao = postDao;
         this.userDao = userDao;
-        postDao = null;
+        this.emailService = emailService;
     }
+
+
+
 
    // private final EmailService emailDao;
 
@@ -56,10 +58,10 @@ public class PostController {  // lines 16 to  29 is how you use dependency inje
         return "posts/create";
     }
 @PostMapping("/posts/create")
-    public String createProduce(@ModelAttribute Posts posts){ // code has been refactored to implement form model binding
+    public String createProduce(@ModelAttribute Post posts){ // code has been refactored to implement form model binding
 //public String createProduce(@RequestParam(name = "title") String title, @RequestParam(name="body") String body ) {
 //    Post post = new Post (title, body);
-    postDao.save(post);
+    postDao.save(posts);
 
     return "redirect:/posts";
 }
@@ -68,14 +70,14 @@ public class PostController {  // lines 16 to  29 is how you use dependency inje
     public String createPost(@ModelAttribute Post post) {
         User user = userDao.findById(1);
         post.setUser(user);
-        post.Dao.save(post);
-        emailService.preparedAndSendPost(post);
+        postDao.save(post);
+        emailService.prepareAndSend(post);
         return "redirect:/posts";
 }
 
 @GetMapping("/posts/{id}/edit") // Form Model Binding exercise
-    public String editPostForm(Model model @PathVariable long id){
-model.addAttribute("post",postDao.findPostBId(id));
+    public String editPostForm(Model model, @PathVariable long id){
+model.addAttribute("post",postDao.findPostById(id));
     model.addAttribute("heading", "Edit Post");
     return "/posts/create";
 }

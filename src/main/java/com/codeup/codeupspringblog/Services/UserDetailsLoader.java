@@ -1,5 +1,7 @@
-package com.codeup.codeupspringblog;
+package com.codeup.codeupspringblog.Services;
 
+
+import com.codeup.codeupspringblog.Repository.UserRepository;
 import com.codeup.codeupspringblog.models.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
@@ -7,16 +9,22 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 
-public class UserWithRoles extends User implements UserDetails {
+public class UserDetailsLoader extends User implements UserDetails {
 
-    public UserWithRoles(User user) {
-        super(user);  // Call the copy constructor defined in User
+    private final UserRepository userDao;
+    public UserDetailsLoader(UserRepository userDao){
+        this.userDao = userDao;
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         String roles = ""; // Since we're not using the authorization part of the component
         return AuthorityUtils.commaSeparatedStringToAuthorityList(roles);
+    }
+
+    @Override
+    public String getUsername() {
+        return null;
     }
 
     @Override
