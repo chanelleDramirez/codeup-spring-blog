@@ -3,47 +3,31 @@ package com.codeup.codeupspringblog.Services;
 
 import com.codeup.codeupspringblog.Repository.UserRepository;
 import com.codeup.codeupspringblog.models.User;
+import com.codeup.codeupspringblog.models.UserWithRoles;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
 
 import java.util.Collection;
-
-public class UserDetailsLoader extends User implements UserDetails {
+@Service
+public class UserDetailsLoader implements UserDetailsService {
 
     private final UserRepository userDao;
-    public UserDetailsLoader(UserRepository userDao){
+
+    public UserDetailsLoader(UserRepository userDao) {
         this.userDao = userDao;
     }
 
     @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        String roles = ""; // Since we're not using the authorization part of the component
-        return AuthorityUtils.commaSeparatedStringToAuthorityList(roles);
-    }
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        User user = userDao.findByUsername(username);
+        if (user == null) {
+            throw new UsernameNotFoundException("No user found for " + username);
+        }
 
-    @Override
-    public String getUsername() {
-        return null;
-    }
-
-    @Override
-    public boolean isAccountNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isAccountNonLocked() {
-        return true;
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return true;
+        return new UserWithRoles(user);
     }
 }

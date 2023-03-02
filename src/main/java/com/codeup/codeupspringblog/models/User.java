@@ -13,7 +13,18 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;  // id field
 
-    public User(long id, String name){
+    @Column
+    private String username; // username field
+
+    @Column
+    private String email; //email field
+    @Column
+    private String password; // password field
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")  // Implementing the use of Relationships here.
+    private List<Post> posts;
+
+    public User(long id, String username){
         this.id = id;
         this.username = username;
     }
@@ -25,8 +36,7 @@ public class User {
     public Long getId() {
         return id;
     }
-    @Column
-    private String username; // username field
+
 
     public User() {
 
@@ -65,10 +75,6 @@ public class User {
         this.username = username;
     }
 
-    @Column
-    private String email; //email field
-    @Column
-    private String password; // password field
 
     public User(String email, String password){
 
@@ -92,8 +98,7 @@ public class User {
         this.password = password;
     }
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")  // Implementing the use of Relationships here.
-    private List<Post> posts;
+
 
 
 //    User user = userDao.getById(); // setting the user before the post is created

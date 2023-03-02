@@ -24,12 +24,17 @@ public class UserController {
         return "users/register";
     }
 
-    @PostMapping("/register")
-    public String saveUser(@ModelAttribute User user){
-        String hash = passwordEncoder.encode(user.getPassword());
-        user.setPassword(hash);
-        userDao.save(user);
-        return "redirect:/login"; // this will re-direct the user back to the login page because we don't save passwords and this allows users to sign up not login.
+//    @PostMapping("/register")
+//    public String saveUser(@ModelAttribute User user){
+//        String hash = passwordEncoder.encode(user.getPassword());
+//        user.setPassword(hash);
+//        userDao.save(user);
+//        return "redirect:/login"; // this will re-direct the user back to the login page because we don't save passwords and this allows users to sign up not login.
+//    }
+
+    @GetMapping("/login")
+    public String userLogin(){
+        return "users/login";
     }
 }
 

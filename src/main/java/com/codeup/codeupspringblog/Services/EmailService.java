@@ -18,8 +18,8 @@ public class EmailService {
     @Value("${spring.mail.from}")
     private String from;
 
-    @Value("${CUSTOM KEY}")
-    private String customKEY;
+//    @Value("${CUSTOM KEY}") // do not currently need.
+//    private String customKEY;
     public void prepareAndSend(Post post) {
 
         SimpleMailMessage msg = new SimpleMailMessage();
