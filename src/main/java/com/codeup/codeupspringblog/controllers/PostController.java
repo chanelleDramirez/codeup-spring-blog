@@ -51,18 +51,20 @@ public class PostController {  // lines 16 to  29 is how you use dependency inje
     }
 
     @GetMapping("/posts/create") // This is where the form for creating a post would go
-    public String create() {
+    public String create(Model model) { // code has been refactored to implement form model binding
+        model.addAttribute("posts", new Post());
         return "posts/create";
     }
 @PostMapping("/posts/create")
-public String createProduce(@RequestParam(name = "title") String title, @RequestParam(name="body") String body ) {
-    Post post = new Post (title, body);
+    public String createProduce(@ModelAttribute Posts posts){ // code has been refactored to implement form model binding
+//public String createProduce(@RequestParam(name = "title") String title, @RequestParam(name="body") String body ) {
+//    Post post = new Post (title, body);
     postDao.save(post);
 
     return "redirect:/posts";
 }
 
-@PostMapping("/posts/save")
+@PostMapping("/posts/save") // assigning a user to a post
     public String createPost(@ModelAttribute Post post) {
         User user = userDao.findById(1);
         post.setUser(user);
