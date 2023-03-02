@@ -73,6 +73,14 @@ public class PostController {  // lines 16 to  29 is how you use dependency inje
         return "redirect:/posts";
 }
 
+@GetMapping("/posts/{id}/edit") // Form Model Binding exercise
+    public String editPostForm(Model model @PathVariable long id){
+model.addAttribute("post",postDao.findPostBId(id));
+    model.addAttribute("heading", "Edit Post");
+    return "/posts/create";
+}
+
+
 }
 
 
