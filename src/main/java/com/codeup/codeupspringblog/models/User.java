@@ -32,6 +32,14 @@ public class User {
 
     }
 
+    public User(User copy) { //UserWithRoles uses this contructor
+        id = copy.id; // This line is SUPER important! Many things won't work if it's absent
+        email = copy.email;
+        username = copy.username;
+        password = copy.password;
+    }
+
+
     public String getName(){
         return username;
     }
@@ -71,15 +79,15 @@ public class User {
     private List<Post> posts;
 
 
-    User user = userDao.getById(); // setting the user before the post is created
-    Post post = new Post();
-    post.setTitle("");
-    post.setDescription("");
-    post.setOwner(user);
-    postDao.save(post);
-
-
-
+//    User user = userDao.getById(); // setting the user before the post is created
+//    Post post = new Post();
+//    post.setTitle("");
+//    post.setDescription("");
+//    post.setOwner(user);
+//    postDao.save(post);
+//
+//
+//
 
 
 }

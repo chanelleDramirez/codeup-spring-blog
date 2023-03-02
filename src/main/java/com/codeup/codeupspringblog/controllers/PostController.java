@@ -62,7 +62,14 @@ public String createProduce(@RequestParam(name = "title") String title, @Request
     return "redirect:/posts";
 }
 
-
+@PostMapping("/posts/save")
+    public String createPost(@ModelAttribute Post post) {
+        User user = userDao.findById(1);
+        post.setUser(user);
+        post.Dao.save(post);
+        emailService.preparedAndSendPost(post);
+        return "redirect:/posts";
+}
 
 }
 

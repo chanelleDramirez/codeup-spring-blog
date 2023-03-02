@@ -44,10 +44,7 @@ public class Post {
     private User user;
 
 
-
-
-
-
-
+    public void setUser(User user) {
+    }
 }
 
